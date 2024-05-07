@@ -1,6 +1,12 @@
-import { createStore } from 'redux';
-import rootReducer from './components/reducer'; // Подставьте ваш редюсер
 
-const store = createStore(rootReducer);
+//import themeReducer from "./components/reducer";
+
+import { configureStore } from '@reduxjs/toolkit';
+
+import reducer from './components/reducer';
+
+const store = configureStore({
+    reducer: reducer,
+});
 
 export default store;

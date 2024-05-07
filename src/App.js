@@ -1,19 +1,28 @@
-import React from 'react';
+import React from "react";
+//import "./App.css";
+import store from './store';
 import { Provider } from 'react-redux';
-import ThemeSwitcher from './components/ThemeSwitcher';
-import rootReducer from './components/reducer';
-import { createStore } from 'redux';
+import ThemeSwitcher from "./components/ThemeSwitcher";
+import { useSelector } from "react-redux";
 
+function App() {
+  const theme = useSelector((state) => state.theme); // Получаем текущую тему из Redux
 
-const store = createStore(rootReducer);
-
-const App = () => {
   return (
-    <Provider store={store}>
-      <ThemeSwitcher />
+    <div className={`App ${theme}-theme`}>
 
-    </Provider>
+      <header className="App-header">
+        <ThemeSwitcher />
+      </header>
+    </div>
   );
-};
+}
 
-export default App;
+const WrappedApp = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+export default WrappedApp;
+
